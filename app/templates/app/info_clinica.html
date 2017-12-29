@@ -1,0 +1,9 @@
+﻿{% extends 'app/layout.html' %}
+
+{% block content %}
+  <h2>{{paciente.apellido_paterno}} {{paciente.apellido_materno}} , {{paciente.nombres}}</h2>
+
+   <p>Por favor tomas las siguientes consideraciones: {{atencion.observacion_medica}}</p>
+ 
+
+{% endblock %}

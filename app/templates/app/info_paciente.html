@@ -1,0 +1,14 @@
+﻿{% extends 'app/layout.html' %}
+
+{% block content %}
+{% load custom_tags %}
+  <h2>{{paciente.apellido_paterno}} {{paciente.apellido_materno}} , {{paciente.nombres}}</h2>
+    {% if request.user|has_group:"Establecimiento" %}
+        <h3>Por favor tomas las siguientes consideraciones: </h3>
+        <h3>{{atencion.observacion_medica}}</h3>
+    {% else %}
+        <h3>Por favor tomas las siguientes consideraciones: </h3>  
+        <h3>{{atencion.observacion_publica}}</h3>
+    
+   {% endif %}
+{% endblock %}

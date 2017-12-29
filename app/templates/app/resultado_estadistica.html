@@ -1,0 +1,23 @@
+﻿{% extends 'app/layout.html' %}
+
+{% block content %}
+{% if enfermedad %}
+    <h2>Resultado Estadisticas de: {{enfermedad.nombre}}, en la región: {{regionr}} </h2>
+    <h3>Cantidad de atenciones ambulatorias a nivel nacional:{{cantidad_atenciones_ambulatorias}}</h3>
+    <h3>Cantidad de atenciones de urgencia en la región:{{cantidad_atenciones_urgencias}}</h3>
+    <h3>Promedio nacional de atenciones para esta enfermedad:{{promedio}}</h3>
+{% else  %}
+    <h3>Hubo un problema con los datos, por favor intente mas tarde</h3>
+{% endif  %}
+<!--<h3>Cantidad de atenciones hoy:</h3>
+<h3>Cantidad de atenciones en los ultimos 7 días:</h3>
+<h3>Cantidad de atenciones en los ultimos 30 días:</h3>
+<h3>Cantidad de atenciones en los ultimos 6 meses:</h3>
+-->
+<div>
+    
+</div>
+<script>
+    
+</script>
+{% endblock %}

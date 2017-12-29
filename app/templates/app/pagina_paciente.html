@@ -1,0 +1,28 @@
+﻿{% extends 'app/layout.html' %}
+
+{% block content %}
+{% load custom_tags %}
+  <h2>{{paciente.apellido_paterno}} {{paciente.apellido_materno}} , {{paciente.nombres}}</h2>
+
+    <p>RUT: {{paciente.rut_paciente}} </p>
+    <p>Sexo: {{paciente.sexo}} </p>
+    <p>Fecha de Nacimiento: {{paciente.fecha_nacimiento}}</p>
+    <p>Fono: {{paciente.fono}} </p>
+    <p>Fono Emergencia:{{paciente.fono_emergencia}} </p>
+    <p>Direccion:{{paciente.direccion}} </p>
+    <p>E-mail:{{paciente.email}} </p>
+    <p>Peso:{{paciente.peso}} kilogramos </p>
+    <p>Estatura:{{paciente.estatura}} metros </p>
+
+
+  {% if request.user|has_group:"Medico" %}
+    <button onclick="location.href='{% url 'modificar paciente' %}'" >Modificar Datos de Paciente</button>
+    <button onclick="location.href='{% url 'ingresar atencion ambulatoria' %}'" >Ingresar Atencion Ambulatoria</button>
+  {% elif request.user|has_group:"Establecimiento" %}
+    <button onclick="location.href='{% url 'ingresar atencion urgencia' %}'" >Ingresar Atencion Urgencia</button>
+  {% endif %}
+    <button onclick="location.href='{% url 'consultar atencion ambulatoria' %}'" >Atenciones Ambulatorias del Paciente</button>
+    <button onclick="location.href='{% url 'consultar atencion urgencia' %}'" >Atenciones de Urgencia del Paciente</button>
+ 
+
+{% endblock %}

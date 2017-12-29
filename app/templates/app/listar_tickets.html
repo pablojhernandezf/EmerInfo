@@ -1,0 +1,60 @@
+﻿{% extends 'app/layout.html' %}
+
+{% block content %}
+  <h2>Mís Tickets</h2>
+<div>
+    <div class="row">
+        
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>
+            Listado 
+          </h4>
+        </div>
+        <table class="table table-fixed">
+            {% if tickets %}
+          <thead>
+              
+            <tr>
+              <th class="col-xs-3"># Ticket</th><th class="col-xs-3">Fecha Emitido </th><th class="col-xs-3">Revisar Ticket</th>
+            </tr>
+              
+          </thead>
+            
+          <tbody>
+              {% for ticket in tickets %}
+            <tr>
+                
+                    <td class="col-xs-3">{{ ticket.id }}</td>
+                    <td class="col-xs-3">{{ ticket.fecha_emitido }}</td>
+                    <td class="col-xs-3"><button onclick="location.href='{% url 'pagina ticket' ticket.id %}'" >Ver</button></td>
+                
+            </tr>
+               {% endfor %} 
+          </tbody>
+            {% else %}
+
+            <thead>
+              
+            <tr>
+              <th class="col-xs-12">Sin Resultados</th>
+            </tr>
+              
+          </thead>
+                <tbody>
+                    <tr>
+                      <td class="col-xs-12"><italic>No hay resultados para su busqueda</italic></td>
+                    </tr>
+                </tbody>
+            {% endif %}
+        </table>
+      </div>
+        
+  </div>
+
+    
+</div>
+<script>
+    
+</script>
+{% endblock %}

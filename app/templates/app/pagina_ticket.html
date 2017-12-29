@@ -1,0 +1,38 @@
+﻿{% extends 'app/layout.html' %}
+
+{% block content %}
+{% load custom_tags %}
+{% if ticket %}
+  <h2>Ticket: #{{ticket.id}} de {{ticket.rut_medico}}</h2>
+    <h2>Descripcion:{{ticket.descripcion}}</h2>
+    {% if ticket.respuesta %}
+    <h2>Respuesta:{{ticket.respuesta}}</h2>
+    {% else %}
+    <h2>Respuesta:Sin responder aún</h2>
+    {% endif %}
+{% else %}
+<h2>No hay datos</h2>
+ {% endif %}  
+{% if request.user|has_group:"Administrador" %}
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+              <p>
+                {{ field.label_tag }}<br>
+                {{ field }}
+          
+                {% if field.help_text %}
+                  <small style="color: grey">{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                  <p style="color: red">{{ error }}</p>
+                {% endfor %}
+              </p>
+            {% endfor %}
+            <button type="submit">Responder</button>
+          </form>
+  {% endif %}
+   
+ 
+
+{% endblock %}

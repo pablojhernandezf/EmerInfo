@@ -1,0 +1,72 @@
+﻿{% extends 'app/layout.html' %}
+
+{% block content %}
+  <h2>Listar Establecimientos</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button type="submit">Buscar</button>
+  </form>
+<div>
+    <div class="row">
+        
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>
+            Listado 
+          </h4>
+        </div>
+        <table class="table table-fixed">
+            {% if establecimientos %}
+          <thead>
+              
+            <tr>
+              <th class="col-xs-3">Codigo del Establecimiento</th><th class="col-xs-3">Nombre</th><th class="col-xs-3">Región</th><th class="col-xs-3">Comuna</th>
+            </tr>
+              
+          </thead>
+            
+          <tbody>
+              {% for establecimiento in establecimientos %}
+            <tr>
+              <td class="col-xs-3">{{ establecimiento.codigo_establecimiento }}</td><td class="col-xs-3">{{ establecimiento.nombre }}</td><td class="col-xs-3">{{establecimiento.region}}</td><td class="col-xs-3">{{establecimiento.nombre_comuna}}</td>
+            </tr>
+               {% endfor %} 
+          </tbody>
+            {% else %}
+
+            <thead>
+              
+            <tr>
+              <th class="col-xs-12">Sin Resultados</th>
+            </tr>
+              
+          </thead>
+                <tbody>
+                    <tr>
+                      <td class="col-xs-12"><italic>No hay resultados para su busqueda</italic></td>
+                    </tr>
+                </tbody>
+            {% endif %}
+        </table>
+      </div>
+        
+  </div>
+
+    
+</div>
+<script>
+    
+</script>
+{% endblock %}

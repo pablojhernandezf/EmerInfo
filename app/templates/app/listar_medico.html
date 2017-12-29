@@ -1,0 +1,72 @@
+﻿{% extends 'app/layout.html' %}
+
+{% block content %}
+  <h2>Listar Medicos</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button type="submit">Buscar</button>
+  </form>
+<div>
+    <div class="row">
+        
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>
+            Listado 
+          </h4>
+        </div>
+        <table class="table table-fixed">
+            {% if medico %}
+          <thead>
+              
+            <tr>
+              <th class="col-xs-3">Rut</th><th class="col-xs-3">Apellido </th><th class="col-xs-3">Nombre/s</th><th class="col-xs-3">Especialidad</th>
+            </tr>
+              
+          </thead>
+            
+          <tbody>
+              {% for object in medico %}
+            <tr>
+              <td class="col-xs-3">{{ object.rut_medico }}</td><td class="col-xs-3">{{ object.apellido_paterno }}</td><td class="col-xs-3">{{object.nombres}}</td><td class="col-xs-3">{{object.especialidad}}</td>
+            </tr>
+               {% endfor %} 
+          </tbody>
+            {% else %}
+
+            <thead>
+              
+            <tr>
+              <th class="col-xs-12">Sin Resultados</th>
+            </tr>
+              
+          </thead>
+                <tbody>
+                    <tr>
+                      <td class="col-xs-12"><italic>No hay resultados para su busqueda</italic></td>
+                    </tr>
+                </tbody>
+            {% endif %}
+        </table>
+      </div>
+        
+  </div>
+
+    
+</div>
+<script>
+    
+</script>
+{% endblock %}

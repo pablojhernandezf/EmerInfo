@@ -1,0 +1,19 @@
+﻿{% extends 'app/layout.html' %}
+
+{% block content %}
+  <h2>Eliminar Cuenta</h2>
+  <form method="post">
+    {% csrf_token %}
+    <h2>¿Estás seguro que deseas eliminar tu cuenta?</h2>
+    <button type="submit">Si</button>
+    <button href="{% url 'home' %}" class="btn">Volver</button>
+      {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+  </form>
+
+{% endblock %}

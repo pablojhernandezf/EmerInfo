@@ -1,0 +1,58 @@
+﻿
+{% extends 'app/layout.html' %}
+
+{% block content %}
+<h2>Atenciones ambulatorias</h2>
+  
+<div>
+    <div class="row">
+        
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>
+            Listado 
+          </h4>
+        </div>
+        <table class="table table-fixed">
+            {% if lista %}
+          <thead>
+              
+            <tr>
+              <th class="col-xs-2">Enfermedad</th><th class="col-xs-2">Tratamiento </th><th class="col-xs-2">Observación Médica</th><th class="col-xs-2">Observación Pública</th><th class="col-xs-2">Fecha/Hora Atención</th>
+            </tr>
+              
+          </thead>
+            
+          <tbody>
+              {% for atencion, enfermedad in lista %}
+            <tr>
+              <td class="col-xs-3">{{ enfermedad.nombre }}</td><td class="col-xs-3">{{ atencion.tratamiento }}</td><td class="col-xs-3">{{atencion.observacion_medica}}</td><td class="col-xs-3">{{atencion.observacion_publica}}</td><td class="col-xs-3">{{atencion.fecha_atencion_hora}}</td>
+            </tr>
+               {% endfor %} 
+          </tbody>
+            {% else %}
+
+            <thead>
+              
+            <tr>
+              <th class="col-xs-12">Sin Resultados</th>
+            </tr>
+              
+          </thead>
+                <tbody>
+                    <tr>
+                      <td class="col-xs-12"><italic>No hay resultados para su busqueda</italic></td>
+                    </tr>
+                </tbody>
+            {% endif %}
+        </table>
+      </div>
+        
+  </div>
+
+    
+</div>
+<script>
+    
+</script>
+{% endblock %}
